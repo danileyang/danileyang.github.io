@@ -5,60 +5,23 @@ date: 2013-05-06 16:27:31
 disqus: y
 ---
 
-I have other themes, checkout (mainly) [this repository](https://github.com/muan/muan.github.com/releases) and [this repository](https://github.com/muan/jekyll-wardrobe). <3
+# JWT(JSON Web Token)的疑问
+## JWT是否是安全的设计
+###场景
+客户端通过登录认证取得JWT，然后每次请求都带上此token来进行身份校验来进行诸如REST API的请求.
+###问题
+那么，我们假设攻击者通过执行JS脚本或者别的其它手段获得了用户的token，因此就可以凭借此token进行身份校验，做一切想做的事情
 
----
+即使用户进行登出操作，攻击者依然可以通过token进行身份验证从而进行攻击
 
-There is no clever design philosophy to talk about, I tried to find something to work with, and 'scribble' came to my mind. This theme uses Open Sans powered by Google Web Fonts, and was written in plain HTML, SCSS & CoffeeScript, though .scss & .coffee files wouldn't be included in the theme. 
+*  如果采用服务端对登出用户的token进行名单记录，是可以在一定程度上进行杜绝这个问题，但是这显然违背了JWT设计的初衷：无状态化
+*  如果对token设置较短的生命周期，那带来的影响就是要么客户端频繁的需要用户进行登录操作，要不是客户端默默的刷新新的token。而攻击者获取到token后同样也可以进行token刷新
 
-The theme is mobile optimised but I did not check browser compatibility. It looks great in Chrome, Safari and Firefox though.
+###现状
+为了保护用户的token不被窃取，请采用https.
+一旦token泄露，正如cookie-session机制也一样，都会被攻击者直接攻击，但这需要很高的成本.
 
-<a href="https://github.com/muan/scribble" target="_blank" class="big-button gray">Get it on GitHub &hearts;</a>
+一些其它的加强性措施如：
 
----
-
-### Get started
-
-1. [Fork the repository](https://github.com/muan/scribble/fork).
-2. Clone the repository to your computer.<br /> `git clone https://github.com/username/scribble`
-3. `bundle install`
-4. **If using older versions of Jekyll**<br />
-  Build and run jekyll using `jekyll --server --auto`.<br />
-  **If using [Jekyll 1.0](http://blog.parkermoore.de/2013/05/06/jekyll-1-dot-0-released/)**<br />
-  Build Jekyll using `jekyll build`.<br />
-  Then run Jekyll using `jekyll serve --watch`<br />
-5. Go to http://localhost:4000 for your site.
-
----
-
-### Make it yours
-
-1. I have extract most user specific information to `_config.yml`, you should be able to set up almost everything from it.
-2. Change about.md for blog intro.
-3. For domain settings, see [the guide from GitHub](https://help.github.com/articles/setting-up-a-custom-domain-with-pages).
-
----
-
-### Options
-
-When writing a post, there are 3 options you can add to the header.
-
-1. **disqus: y**<br />
-  If disqus is set to 'y', at the end of the post there will be a disqus thread, just like this one. To use disqus, you MUST [set up your own disqus account](http://disqus.com/).
-
-2. **share: y**<br />
-  An option for showing tweet and like button under a post.
-
-3. **date**: 2013-05-06 18:07:17<br />
-  Date is not a required header since Jekyll reads the file name for date, this was added in only for the **signoff time**. (as shown at the end of this post) If you don't want the signoff time, go into `/includes/signoff.html` and remove the `<span>`.
-
----
-
-<a href="https://github.com/muan/scribble" target="_blank" class="big-button gray">Get it on GitHub &hearts;</a>
-
----
-
-### The end
-
-Like it? [Tell me](http://twitter.com/muanchiou).<br/>
-Problem? [Use GitHub Issues](https://github.com/muan/scribble).
+*  设备ID进行签名
+*  额外参数校验
