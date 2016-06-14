@@ -1,7 +1,7 @@
 ---
 layout: post
 title: JWT questions
-date: 2016-06-14 14:27:31
+date: 2016-06-13 14:27:31
 disqus: y
 ---
 
