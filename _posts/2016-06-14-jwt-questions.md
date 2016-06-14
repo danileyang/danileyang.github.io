@@ -1,6 +1,6 @@
 ---
 layout: post
-title: JWT(JSON Web Token)的疑问
+title: JWT(JSON Web Token)
 date: 2016-06-13 14:53:26
 disqus: y
 ---
