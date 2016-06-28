@@ -1,7 +1,7 @@
 ---
 layout: post
 title: groovy coding : new line
-date: 2016-06-26 10:13:26
+date: 2016-06-27 10:13:26
 disqus: y
 ---
 # groovy潜规则之换行
