@@ -1,7 +1,7 @@
 ---
 layout: post
 title: grails multi DB
-date: 2016-07-18 10:13:26
+date: 2016-07-17 10:13:26
 disqus: y
 ---
 #grails with multi DB
