@@ -1,6 +1,6 @@
 ---
 layout: post
-title: grails multi DB
+title: grails with multi DB
 date: 2016-07-17 10:13:26
 disqus: y
 ---
