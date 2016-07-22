@@ -32,6 +32,7 @@ match(iori{name:"iori"}) create (jams:Person{name:"jams"}) create (iori)-[:FRIEN
 
 经过朋友的添加和朋友关系的添加，我们得到如下的关系网络
 ![Mou icon](http://7fvcu1.com1.z0.glb.clouddn.com/1.pic.jpg)
+<br/>
 如上图关系，我们不但为你添加了好友，还为你的好友Julia添加了好友...并且还让你的朋友WORKED_WITH Neo4j
 
 ######那么接下来我们看看谁能帮助你学习Neo4j
@@ -42,6 +43,7 @@ MATCH path = shortestPath( (you)-[:FRIEND*..3]-(expert) )
 RETURN db,expert,path
 <br/>
 ![Mou icon](http://7fvcu1.com1.z0.glb.clouddn.com/6.pic.jpg)
+<br/>
 呐，现在已经为你找出可以帮助你学习Neo4j的朋友啦~
 
 ######附其他一些操作
